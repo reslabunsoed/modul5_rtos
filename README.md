@@ -1,8 +1,53 @@
-# Modul ... : 
+# Modul 5 : Real-Time Operating System (RTOS)
 
 ## 🎯 Tujuan Praktikum
+Berikut adalah tujuan dari praktikum pada Modul 5:
+1.	Praktikan mampu memahami prinsip kerja dari RTOS
+2.	Praktikan mampu membuat produk sederhana dengan memanfaatkan Operating system
 
 ## 📄 Dasar Teori
+Real- Time Operating System (biasa di sebut RTOS) adalah sebuah Operating System (OS) yang digunakan untuk memenuhi kebutuhan aplikasi secara Real Time pada Embedded Device yang memproses data secara langsung tanpa ada nya penundaan (Buffer). Real Time karena system ini hamper bekerja setiap saat dimana ia dibutuhkan saat itu juga. Salah satu kelebihan Operating System RTOS adalah kemampuan nya untuk melakukan kerja secara konsisten baik secara waktu yang ia butuhkan maupun secara task aplikasi yang mampu ia kerjakan.
+
+Gambar berikut menunjukkan perbedaan antara non-RTOS dengan RTOS
+
+<img width="1200" height="675" alt="nonrtosvsrtos" src="https://github.com/user-attachments/assets/91be9fab-73d2-4213-8d61-c3cd939dd357" />
+<br>
+RTOS sendiri terdiri dari 2 jenis yaitu, sistem soft RTOS dan sistem hard RTOS. Soft RTOS bisa dideskripsikan sebagai sistem yang hampir selalu menyelesaikan task dengan waktu yang telah ditentukan. Pada soft RTOS kemungkinan penyelesaian task melewati batas waktu pelaksanaan task masih bisa terjadi. Dan pada sistem soft RTOS, apabila terjadi kegagalan mencapai deadline dalam waktu yang telah ditentukan maka sistem akan mengalami efek yang tidak begitu berbahaya bagi sistem. Contohnya seperti penurunan performa sistem. Sedangkan hard RTOS merupakan system yang dipastikan selalu menyelesaikan task dalam waktu yang telah ditentukan. Dikatakan pasti selalu menyelesaikan task karena hard RTOS selalu menyelesaikan task sebelum deadline dan apabila terjadi kegagalan menyelesaikan task maka sistem akan mengalami efek berbahaya yang dapat merusak sistem secara keseluruhan.
+
+Terdapat beberapa jenis RTOS, seperti SafeRTOS dan FreeRTOS. Jenis Operating System RTOS yang paling sering digunakan adalah FreeRTOS, karena jenis RTOS yang bersifat Open Source, gratis dan mudah digunakan.
+Berikut adalah aktivitas yang dapat dilakukan dalam pengenalan Real-Time Operating System menggunakan library yang ada di Arduino yaitu FreeRTOS.
+
+Berikut adalah percobaan awal yang dapat dilakukan dalam pengenalan Real-Time Operating System menggunakan library yang ada di Arduino yaitu FreeRTOS.
+
+```cpp
+#include <Arduino_FreeRTOS.h>
+
+void setup() {
+  // put your setup code here, to run once:
+
+  Serial.begin(9600);
+  xTaskCreate(One, "one", 128, NULL, 1, NULL);
+  xTaskCreate(Two, "two", 128, NULL, 1, NULL);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+
+}
+
+void One(void *pvParameters) {
+  while(1) {
+    Serial.println("One");
+    delay(2000);
+  }
+}
+void Two(void *pvParameters) {
+  while(1) {
+    Serial.println("Two");
+    delay(1000);
+  }
+}
+```
 
 ## 🚀 Tugas Pendahuluan
 
